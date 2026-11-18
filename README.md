@@ -1,5 +1,8 @@
 # Node.js Starter Project — GitHub Day 2
 
+> Remote exercise: this README was updated directly on GitHub before fetching
+> and pulling the change into the local repository.
+
 A small Express application for practicing GitHub pushes, pulls, feature branches,
 pull requests, forks, and issues. Day 1 is preserved in its original directory.
 
