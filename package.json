@@ -4,7 +4,8 @@
   "description": "Day 2 GitHub remote workflows with a Node.js app",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "test": "node --test"
   },
   "keywords": [],
   "author": "",
