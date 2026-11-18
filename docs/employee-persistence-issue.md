@@ -30,8 +30,8 @@ tests before replacing the tutorial placeholder.
 Submitted as [GitHub issue #3](https://github.com/mitch-infogain/git-node-d2/issues/3)
 for the Day 2 issue exercise. Day 3 implements persistence with input validation,
 bcrypt hashing, HTTP 201, and tests for JSON/form submissions and real MongoDB
-storage. The integration check deletes only its own temporary employee. The
-Day 3 feature commit references this issue for closure when merged into `main`.
+storage. The integration check deletes only its own temporary employee. Commit
+`3d3b6a6` was merged into `main` and pushed; GitHub issue #3 is now closed.
 
 The reproduction and actual-result sections above preserve the original Day 2
 bug report; they describe the behavior before the Day 3 fix.

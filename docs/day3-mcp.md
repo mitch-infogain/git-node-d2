@@ -108,6 +108,8 @@ need to publish localhost or use an untrusted public tunnel.
 
 The Docker MCP server pulled `nginx:alpine`, ran `mcp-test-nginx` bound to
 `127.0.0.1:8080`, and built `my-node-app:day3` from the application Dockerfile.
+After publishing, a fresh clone of the GitHub repository was built again
+through Docker MCP, verifying the remote-to-container workflow.
 The Node image runs as a non-root user and installs production dependencies
 only; neither credentials nor the environment file are copied into it.
 
@@ -135,6 +137,10 @@ The separate nginx demo can be stopped with `docker stop mcp-test-nginx`.
 - `npm audit`: zero known vulnerabilities.
 
 Postman OAuth and its cloud exercises remain explicitly pending.
+
+The feature was fast-forward merged into `main` and pushed as commit `3d3b6a6`.
+GitHub automatically closed employee-persistence issue #3. The local feature
+branch is retained as a record of the exercise.
 
 ## Official references
 
