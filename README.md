@@ -25,6 +25,9 @@ set `PORT=8001` in your terminal before starting this project.
 	The installed Node.js v20.10/npm v10 combination also works; npm v11 requires
 	a newer Node.js version, so do not upgrade npm alone on this environment.
 
+Verified locally with Node.js v20.10.0 and npm v10.8.2. This requirements note
+was committed locally and pushed after pulling the remote README edit.
+
 ## License
 
 ISC, matching the supplied starter's package metadata.
