@@ -1,0 +1,19 @@
+{
+  "name": "git-node-d2",
+  "version": "1.0.0",
+  "description": "Day 2 GitHub remote workflows with a Node.js app",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "3.1.11"
+  }
+}
