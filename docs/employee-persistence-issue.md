@@ -27,5 +27,6 @@ tests before replacing the tutorial placeholder.
 
 ## Status
 
-Prepared locally for the PDF's issue exercise. This is not a GitHub issue until
-it has been submitted through GitHub and assigned an issue number.
+Submitted as [GitHub issue #3](https://github.com/mitch-infogain/git-node-d2/issues/3)
+for the PDF's issue exercise. It remains open: persistence is separate from the
+database-list feature implemented in this tutorial.

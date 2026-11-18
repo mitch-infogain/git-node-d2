@@ -30,6 +30,9 @@ set `PORT=8001` in your terminal before starting this project.
 - MongoDB listening on port 27017 for the employee-list endpoint. Mongoose v8
 	is used because the supplied Mongoose v9 requires a newer Node.js runtime.
 
+Verified locally with Node.js v20.10.0 and npm v10.8.2. This requirements note
+was committed locally and pushed after pulling the remote README edit.
+
 ## Endpoints
 
 - `GET /` — `You are on the root route.`
@@ -56,35 +59,42 @@ mismatch and invalid arrow-function punctuation. Queries fail promptly with HTTP
 not returned to clients. Importing the application in tests does not connect to
 MongoDB or start a fixed-port server.
 
-Verified locally with Node.js v20.10.0 and npm v10.8.2. This requirements note
-was committed locally and pushed after pulling the remote README edit.
-
 ## License
 
 ISC, matching the supplied starter's package metadata.
 
 ## Remote exercises
 
-The intended remote is `https://github.com/mitch-infogain/git-node-d2.git`.
-It must be created as an empty public GitHub repository before the first push.
-The original Day 1 repository must not be deleted.
+Completed against the public repository
+[mitch-infogain/git-node-d2](https://github.com/mitch-infogain/git-node-d2):
 
-GitHub authentication is needed to create the repository, edit files on the web,
-create and merge pull requests, fork Spoon-Knife, and create an issue. Local
-commits are not a substitute for those remote exercises.
+1. Initialized a fresh Day 2 repository and pushed `main`, preserving Day 1.
+2. Committed the README directly on GitHub, fetched the change, observed local
+	`main` behind by one commit, and pulled it with a fast-forward.
+3. Edited the requirements locally, committed, and pushed back to GitHub.
+4. Published `controller-feature`, created and merged
+	[PR #1](https://github.com/mitch-infogain/git-node-d2/pull/1), pulled `main`,
+	deleted the merged local/remote feature branches, and pruned tracking refs.
+5. Added the employee model directly on GitHub, then fetched, inspected, and
+	pulled the remote change.
+6. Created `feature-db-access` on GitHub, committed the database changes remotely,
+	reconciled the prepared local branch, and created and merged
+	[PR #2](https://github.com/mitch-infogain/git-node-d2/pull/2). Pulled `main`
+	and deleted/pruned the merged database branch.
+7. Created [issue #3](https://github.com/mitch-infogain/git-node-d2/issues/3)
+	with reproduction steps, actual results, and expected results for the
+	placeholder POST endpoint. The issue is intentionally open; no coding agent
+	was assigned. Details are also in `docs/employee-persistence-issue.md`.
+8. Forked [octocat/Spoon-Knife](https://github.com/octocat/Spoon-Knife) to
+	[mitch-infogain/Spoon-Knife](https://github.com/mitch-infogain/Spoon-Knife),
+	cloned it beside this project, customized its page title, and configured
+	`origin` for the fork and `upstream` for the original repository.
 
-Local branch preparation:
+GitHub CLI and GitHub APIs were used for remote operations. The browser's file
+editor failed to load, so its edit/commit workflow was performed through the API
+instead. No existing repositories were deleted, and no force pushes or hard
+resets were needed.
 
-- `main` contains the starter and README commits.
-- `controller-feature` contains the controller refactor and its tests.
-- `feature-db-access` builds on the controller feature with the employee model,
-  database connection, and list route.
-
-After authentication, push `main`, then create and merge the controller PR into
-`main`. Push the database branch and create its PR against the updated `main`.
-Only after each PR is merged should local `main` be pulled and merged branches
-deleted. No remote PRs, forks, issues, or merges are claimed by these local steps.
-
-The web-edit/fetch/pull exercise, Spoon-Knife fork and title change, and GitHub
-issue exercise still need authenticated GitHub access. A reproducible remaining
-issue is documented in `docs/employee-persistence-issue.md` for submission.
+Validation: seven automated HTTP tests pass, the employee-list endpoint was
+checked against the local MongoDB without inserting records or logging employee
+data, and the dependency audit reports zero vulnerabilities.
