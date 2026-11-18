@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const routes = require('./routes/routes');
 const router = express.Router();
 const port = Number(process.env.PORT || 8000);
@@ -10,6 +11,11 @@ routes(router);
 app.use('/', router);
 
 if (require.main === module) {
+  const uri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/employees';
+  mongoose.connect(uri, { serverSelectionTimeoutMS: 3000 })
+    .then(() => console.log('MongoDB connected successfully'))
+    .catch(() => console.error('MongoDB connection failed; check MONGODB_URI and the MongoDB service.'));
+
   app.listen(port, function () {
     console.log('Listening... ' + port);
   });
