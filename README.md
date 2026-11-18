@@ -1,5 +1,8 @@
 # Node.js Starter Project — GitHub Day 2
 
+> Remote exercise: this README was updated directly on GitHub before fetching
+> and pulling the change into the local repository.
+
 A small Express application for practicing GitHub pushes, pulls, feature branches,
 pull requests, forks, and issues. Day 1 is preserved in its original directory.
 
@@ -52,6 +55,9 @@ mismatch and invalid arrow-function punctuation. Queries fail promptly with HTTP
 503 when the database is unavailable; internal errors and connection strings are
 not returned to clients. Importing the application in tests does not connect to
 MongoDB or start a fixed-port server.
+
+Verified locally with Node.js v20.10.0 and npm v10.8.2. This requirements note
+was committed locally and pushed after pulling the remote README edit.
 
 ## License
 
