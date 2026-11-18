@@ -1,4 +1,4 @@
-# Node.js Starter Project — GitHub Day 2
+# Node.js Bootcamp — GitHub Day 2 and MCP Day 3
 
 > Remote exercise: this README was updated directly on GitHub before fetching
 > and pulling the change into the local repository.
@@ -8,9 +8,9 @@ pull requests, forks, and issues. Day 1 is preserved in its original directory.
 
 ## Getting started
 
-Install dependencies with `npm install`, then run `npm start`.
-The default address is http://localhost:8000. If Day 1 is still using that port,
-set `PORT=8001` in your terminal before starting this project.
+Use the Node.js version in `.nvmrc` (`nvm use`), install dependencies with
+`npm install`, then run `npm start`. The ignored local `.env` uses port 8001
+to avoid stopping Day 1. Without an override, the default port is 8000.
 
 ## Project structure
 
@@ -23,34 +23,41 @@ set `PORT=8001` in your terminal before starting this project.
 
 ## Requirements
 
-- Node.js v20 or higher (a maintained LTS version is recommended).
-- npm; v11 or higher is recommended with a compatible Node.js version.
-	The installed Node.js v20.10/npm v10 combination also works; npm v11 requires
-	a newer Node.js version, so do not upgrade npm alone on this environment.
+- Node.js v22.14.0 is selected for Day 3. MongoDB MCP requires Node.js
+  20.19+, 22.13+, or 24+. The older Day 2 runtime is insufficient for this tool.
+- npm compatible with the selected Node.js version.
 - MongoDB listening on port 27017 for the employee-list endpoint. Mongoose v8
 	is used because the supplied Mongoose v9 requires a newer Node.js runtime.
 
-Verified locally with Node.js v20.10.0 and npm v10.8.2. This requirements note
-was committed locally and pushed after pulling the remote README edit.
+Day 2 was verified with Node.js v20.10.0/npm v10.8.2; its requirements note
+was committed locally and pushed after pulling the remote README edit. Day 3
+uses the newer runtime already installed on this machine.
 
 ## Endpoints
 
 - `GET /` — `You are on the root route.`
 - `GET /aboutus` — `You are on the about us route.`
-- `POST /addemployee` — `You are on the addemployee route`
+- `POST /addemployee` — validates and saves the employee, returning HTTP 201
+	with `{ "message": "Created <name>" }`. Requires `empName` (1–100 characters)
+	and `empPass` (at least 8 characters, at most 72 UTF-8 bytes).
 - `GET /getemployees` — employee documents as a JSON array, without passwords.
 
-The POST controller is the PDF's placeholder: it does not save employees.
+Day 3 replaces the Day 2 POST placeholder with persistence and bcrypt hashing.
+Passwords and internal database errors are never returned to clients.
 An empty employee collection correctly returns `[]`, not a database error.
 Only use dummy data with this training application.
 
 ## Database configuration
 
-By default the application connects to `mongodb://127.0.0.1:27017/employees`
+For Day 3 the application connects to
+`mongodb://127.0.0.1:27017/employees_mcp_bootcamp`
 and reads the `ftEmployees` collection. An existing MongoDB server is required;
 installing Mongoose does not install MongoDB. Set `MONGODB_URI` in the process
-environment to override the connection URL. The example environment file is
-documentation, not an automatically loaded configuration file.
+environment or the ignored `.env` file to override the connection URL. Dotenv
+loads this project's `.env` without replacing existing process variables.
+Use `.env.example` for non-secret defaults; never copy credentials from the
+course assets. The original `employees` database is not modified by the Day 3
+seed or integration checks.
 
 The provided model's unterminated URL string is corrected. The controller and
 route consistently use `getemployees`, correcting the PDF's singular/plural
@@ -83,7 +90,7 @@ Completed against the public repository
 	and deleted/pruned the merged database branch.
 7. Created [issue #3](https://github.com/mitch-infogain/git-node-d2/issues/3)
 	with reproduction steps, actual results, and expected results for the
-	placeholder POST endpoint. The issue is intentionally open; no coding agent
+	placeholder POST endpoint. Day 3 implements the fix; no external coding agent
 	was assigned. Details are also in `docs/employee-persistence-issue.md`.
 8. Forked [octocat/Spoon-Knife](https://github.com/octocat/Spoon-Knife) to
 	[mitch-infogain/Spoon-Knife](https://github.com/mitch-infogain/Spoon-Knife),
@@ -95,6 +102,26 @@ editor failed to load, so its edit/commit workflow was performed through the API
 instead. No existing repositories were deleted, and no force pushes or hard
 resets were needed.
 
-Validation: seven automated HTTP tests pass, the employee-list endpoint was
+Day 2 validation: seven automated HTTP tests passed, the employee-list endpoint was
 checked against the local MongoDB without inserting records or logging employee
 data, and the dependency audit reports zero vulnerabilities.
+
+## Day 3 — MCP servers and containers
+
+See [the Day 3 setup and verification record](docs/day3-mcp.md).
+
+- Native Copilot server definitions are in `.mcp.json`; all five servers are
+	also registered in this machine's personal Copilot configuration.
+- `npm test` checks the HTTP behavior; `npm run test:integration` verifies
+	actual hashed persistence and removes only its own temporary record.
+- `npm run seed:day3` upserts three labeled dummy employees and fictional
+	linked weight data, restricted to `employees_mcp_bootcamp`.
+- `npm run mcp:check` initializes the MongoDB, Git, and Docker MCP servers and
+	invokes a read-only tool on each. GitHub MCP was separately verified.
+- `node scripts/docker-exercise.mjs` runs the Docker MCP nginx/build exercises.
+- `docker compose up -d --wait` builds/runs the app with an isolated MongoDB
+	container. App: http://localhost:3001; nginx demo: http://localhost:8080.
+- Import the collection and environments from `postman/` into Postman Desktop.
+	Postman sign-in/cloud workspace creation is pending at the user's request.
+
+Do not treat this unauthenticated training app as a production employee system.

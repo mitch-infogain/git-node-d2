@@ -1,0 +1,32 @@
+{
+  "mcpServers": {
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "tools": ["*"]
+    },
+    "mongodb": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["scripts/run-mcp.cjs", "mongodb"],
+      "tools": ["*"]
+    },
+    "postman": {
+      "type": "http",
+      "url": "https://mcp.postman.com/minimal",
+      "tools": ["*"]
+    },
+    "docker": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["scripts/run-mcp.cjs", "docker"],
+      "tools": ["*"]
+    },
+    "git": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["scripts/run-mcp.cjs", "git"],
+      "tools": ["*"]
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "info": {
+    "name": "Git-GitHub MCP Bootcamp",
+    "description": "Day 3 local API exercises. Use dummy data only. Remote Postman MCP cannot reach localhost; run these requests through Postman Desktop or its local agent.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [{ "key": "baseUrl", "value": "http://localhost:8001" }],
+  "item": [
+    {
+      "name": "Root",
+      "request": { "method": "GET", "url": "{{baseUrl}}/" },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('Root responds', () => pm.response.to.have.status(200));"] } }]
+    },
+    {
+      "name": "About us",
+      "request": { "method": "GET", "url": "{{baseUrl}}/aboutus" },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('About responds', () => pm.response.to.have.status(200));"] } }]
+    },
+    {
+      "name": "Add employee (writes dummy data)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": { "mode": "raw", "raw": "{\"empName\":\"PostmanDemo\",\"empPass\":\"dummy-postman-only\"}", "options": { "raw": { "language": "json" } } },
+        "url": "{{baseUrl}}/addemployee"
+      },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('Employee created', () => pm.response.to.have.status(201));", "pm.test('Password not returned', () => pm.expect(pm.response.json()).not.to.have.property('empPass'));"] } }]
+    },
+    {
+      "name": "Get employees",
+      "request": { "method": "GET", "url": "{{baseUrl}}/getemployees" },
+      "event": [{ "listen": "test", "script": { "type": "text/javascript", "exec": ["pm.test('List responds', () => pm.response.to.have.status(200));", "pm.test('Employee list excludes passwords', () => { const data = pm.response.json(); pm.expect(data).to.be.an('array'); data.forEach(employee => pm.expect(employee).not.to.have.property('empPass')); });"] } }]
+    }
+  ]
+}
